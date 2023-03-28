@@ -1,0 +1,48 @@
+{% extends 'public/templates/public_template.html' %} {% block title %} {{ title
+}} {% endblock %} {% block main %}
+
+<div class="container mt-6">
+  <div class="col-sm-4">
+    <h4 class="title">{{ title2 }}</h4>
+
+    <div class="row">
+      {%for x in all_groups %} {% if x.id %}
+      <div id="card-container" class="col-sm">
+        <div class="card">
+          <a
+            style="text-decoration: none; color: black"
+            href="{{ url_for('bills', id=x.id) }}"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Group ID: {{x.id}}</h5>
+              <p class="card-text">{{x.group_name}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {%endif%} {%endfor%}
+    </div>
+    <h4 class="title">Add group</h4>
+    <form action="/new_group" method="POST" class="form-contact">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.group_name.label(class="form-control-label") }} {% if
+        form.group_name.errors %} {{ form.group_name(class="form-control
+        form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.group_name.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.group_name(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark mt-2") }}
+      </div>
+    </form>
+    {% for cat, q in get_flashed_messages(True) %}
+    <div class="flash {{ cat }}">{{ q }}</div>
+    {% endfor %} {% endblock %}
+  </div>
+</div>

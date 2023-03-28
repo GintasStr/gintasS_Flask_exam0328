@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(246, 244, 244);
+  color: black;
+}
+
+.nav-link {
+  color: black;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid lightgray;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
+
+h5 {
+  color: gray;
+}
+
+.col-sm-4 {
+  padding-top: 30px;
+  margin: auto;
+}
+
+.flash {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.flash.success {
+  background: #7e7eed;
+  color: rgb(4, 4, 4);
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.flash.error {
+  background: red;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.underForm a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}

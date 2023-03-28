@@ -1,0 +1,70 @@
+{% extends 'public/templates/public_template.html' %} {% block title %} {{ title
+}} {% endblock %} {% block main %}
+
+<div class="container mt-6">
+  <h4 class="title">{{ title2 }}</h4>
+  <div class="table-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for b in bills %}
+        <tr>
+          <td>{{b.amount}}</td>
+          <td>{{b.description}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-4">
+    <h4 class="title">Add bill</h4>
+    <form
+      action="{{ url_for('new_bill') }}?group_id={{ id }}"
+      method="POST"
+      class="form-contact"
+    >
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.amount.label(class="form-control-label") }} {% if
+        form.amount.errors %} {{ form.amount(class="form-control form-control-lg
+        is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.amount.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.amount(class="form-control form-control-lg") }} {%
+        endif %}
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-control-label") }} {% if
+        form.description.errors %} {{ form.description(class="form-control
+        form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.description.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %} {{ form.description(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <!-- <div class="form-group">
+        {{ form.group_id.label(class="form-control-label") }} {{
+        form.group_id(class="form-control form-control-lg", value=id) }}
+      </div> -->
+      <div class="form-group">
+        {{ form.submit(class="btn btn-outline-dark mt-2") }}
+      </div>
+    </form>
+    {% for cat, q in get_flashed_messages(True) %}
+    <div class="flash {{ cat }}">{{ q }}</div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
