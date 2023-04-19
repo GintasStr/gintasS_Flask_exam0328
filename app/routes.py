@@ -26,8 +26,7 @@ Migrate(app, db)
 # Menu
 menu = [{"name": "Register", "url": "register"},
         {"name": "Login", "url": "login"},
-        {"name": "Groups", "url": "groups"},
-        {"name": "Bills", "url": "bills"}]
+        {"name": "Groups", "url": "groups"}]
 
 # Login
 login_manager = LoginManager(app)
@@ -207,10 +206,10 @@ def new_group():
 @app.route("/bills/<int:id>", methods=['GET', 'POST'])
 @login_required
 def bills(id):
-    db.create_all()
+    # db.create_all()
     form = AddBillForm()
     bills = Bills.query.filter_by(group_id=id).all()
-    return render_template("public/bills.html", title="Bill", title2 = "Your bills", menu=menu, form=form, bills=bills, id=id)
+    return render_template("public/bills.html", title="Bill", title2 = "Your bills", form=form, menu=menu, bills=bills, id=id)
 
 @app.route("/new_bill", methods=['POST'])
 @login_required
